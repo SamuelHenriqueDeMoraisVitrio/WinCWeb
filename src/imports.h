@@ -1,18 +1,18 @@
 #ifndef PRIVATE_CWEB_HTTP_IMPORTS_H
 #define PRIVATE_CWEB_HTTP_IMPORTS_H
 
-#include <sys/wait.h>//NOT
+//#include <sys/wait.h>//NOT
 #include <stdio.h>
-#include <sys/stat.h>//NOT
+//#include <sys/stat.h>//NOT
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/socket.h>//NOT
+//#include <sys/socket.h>//NOT
 #include <signal.h>//NOT~
-#include <sys/resource.h>//NOT
+//#include <sys/resource.h>//NOT
 
-#include <arpa/inet.h>//NOT
-#include <unistd.h>//NOT
+//#include <arpa/inet.h>//NOT
+//#include <unistd.h>//NOT
 
 //Windows
 /*
