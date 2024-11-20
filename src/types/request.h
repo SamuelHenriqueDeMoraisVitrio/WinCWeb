@@ -7,7 +7,7 @@
 typedef struct CwebHttpRequest{
 
     char *url;
-    int socket;
+    SOCKET socket;
     char *route;
     char *method;
     char *client_ip;

@@ -13,12 +13,12 @@
 
 //#include <arpa/inet.h>//NOT
 //#include <unistd.h>//NOT
-
-//Windows
-/*
 #include <winsock2.h>   // Substitui sys/socket.h e arpa/inet.h
 #include <windows.h>    // Substitui unistd.h, sys/resource.h e sys/wait.h
 #include <io.h>         // Substitui algumas funções de sys/stat.h
+
+//Windows
+/*
 */
 
 #endif //PRIVATE_CWEB_HTTP_IMPORTS_H
