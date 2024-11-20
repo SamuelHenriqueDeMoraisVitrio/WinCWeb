@@ -15,6 +15,7 @@
 //#include <unistd.h>//NOT
 #include <winsock2.h>   // Substitui sys/socket.h e arpa/inet.h
 #include <windows.h>    // Substitui unistd.h, sys/resource.h e sys/wait.h
+#include <ws2tcpip.h>
 #include <io.h>         // Substitui algumas funções de sys/stat.h
 
 //Windows

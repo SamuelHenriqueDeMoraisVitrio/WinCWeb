@@ -86,7 +86,7 @@ void private_CWebServer_execute_request(CwebServer *self,int socket,const char *
 
 
 
-    send(socket, response_str, strlen(response_str), MSG_NOSIGNAL);
+    send(socket, response_str, strlen(response_str), SEND_FLAGS);
 
     // Enviando conteúdo byte a byte
     if (response->exist_content)
@@ -96,7 +96,7 @@ void private_CWebServer_execute_request(CwebServer *self,int socket,const char *
         {
             size_t chunk_size = response->content_length - sent;
 
-            ssize_t res = send(socket, response->content + sent, chunk_size, MSG_NOSIGNAL);
+            ssize_t res = send(socket, response->content + sent, chunk_size, SEND_FLAGS);
             if (res < 0)
             {
                 break;

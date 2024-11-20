@@ -7,15 +7,12 @@ void private_cweb_execute_request_in_safty_mode(CwebServer  *self,int new_socket
     STARTUPINFO si;
     PROCESS_INFORMATION pi;
     
-    // Inicializa as estruturas
     ZeroMemory(&si, sizeof(si));
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
 
-    // Configura o tempo de execução (em milissegundos) - simula o comportamento do 'alarm'
     DWORD timeout = self->function_timeout * 1000; // Convertendo para milissegundos
 
-    // Cria o processo filho (simulando 'fork' no Windows)
     char cmdline[256];
     snprintf(cmdline, sizeof(cmdline), "child_process.exe %d %s", new_socket, client_ip);  // Substitua pelo comando real
 
@@ -24,31 +21,26 @@ void private_cweb_execute_request_in_safty_mode(CwebServer  *self,int new_socket
             cmdline,       // Comando a ser executado no processo filho
             NULL,          // Atributos de segurança
             NULL,          // Atributos de segurança para o processo filho
-            FALSE,         // Se o processo filho herda os handles
+            false,         // Se o processo filho herda os handles
             CREATE_NEW_CONSOLE,  // Criar uma nova janela de console
             NULL,          // Variáveis de ambiente (NULL usa as do processo atual)
             NULL,          // Diretório de trabalho
             &si,           // Informações de inicialização
             &pi            // Informações do processo
     )) {
-        // O processo foi criado com sucesso, agora aguardamos o timeout
         DWORD wait_result = WaitForSingleObject(pi.hProcess, timeout);
 
         if (wait_result == WAIT_TIMEOUT) {
-            // Se o tempo limite foi atingido
             printf("Processo filho excedeu o tempo limite\n");
             TerminateProcess(pi.hProcess, 1); // Termina o processo filho
         }
 
-        // Fecha os handles após o término do processo
         CloseHandle(pi.hProcess);
         CloseHandle(pi.hThread);
 
-        // Processo pai continua a execução
         private_cweb_treat_response(self->use_static, new_socket);
 
     } else {
-        // Se falhar ao criar o processo
         exit(EXIT_FAILURE);
     }
 
